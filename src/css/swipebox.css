@@ -75,6 +75,8 @@ html.swipebox-html.swipebox-touch {
           box-sizing: border-box;
 }
 #swipebox-slider .slide .swipebox-video-container .swipebox-video {
+  position: relative;
+  z-index: 9999999;
   width: 100%;
   height: 0;
   padding-bottom: 56.25%;
@@ -92,6 +94,13 @@ html.swipebox-html.swipebox-touch {
   background: url(../img/loader.gif) no-repeat center center;
 }
 
+.swipebox-closable {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
 #swipebox-bottom-bar,
 #swipebox-top-bar {
   -webkit-transition: 0.5s;
@@ -104,11 +113,8 @@ html.swipebox-html.swipebox-touch {
 }
 
 #swipebox-bottom-bar {
-  bottom: -50px;
-}
-#swipebox-bottom-bar.visible-bars {
-  -webkit-transform: translate3d(0, -50px, 0);
-          transform: translate3d(0, -50px, 0);
+  position: absolute;
+  top: 50%;
 }
 
 #swipebox-top-bar {
@@ -125,8 +131,50 @@ html.swipebox-html.swipebox-touch {
   text-align: center;
 }
 
-#swipebox-prev,
-#swipebox-next,
+#swipebox-prev {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+#swipebox-prev:before {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  font-family: FontAwesome;
+  content: "\f053";
+  color: rgba(255, 255, 255, 0.71);
+  font-size: 50px;
+  cursor: pointer;
+}
+
+#swipebox-prev:hover:before {
+  color: #fff;
+}
+
+#swipebox-next {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+#swipebox-next:before {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  font-family: FontAwesome;
+  content: "\f054";
+  color: rgba(255, 255, 255, 0.71);
+  font-size: 50px;
+  cursor: pointer;
+}
+
+#swipebox-next:hover:before {
+  color: #fff;
+}
+
 #swipebox-close {
   background-image: url(../img/icons.png);
   background-repeat: no-repeat;
@@ -271,7 +319,6 @@ html.swipebox-html.swipebox-touch {
 
   #swipebox-arrows {
     width: 92%;
-    max-width: 800px;
   }
 }
 /* Skin 
@@ -280,7 +327,6 @@ html.swipebox-html.swipebox-touch {
   background: #0d0d0d;
 }
 
-#swipebox-bottom-bar,
 #swipebox-top-bar {
   text-shadow: 1px 1px 1px black;
   background: #000;
@@ -293,3 +339,4 @@ html.swipebox-html.swipebox-touch {
   line-height: 43px;
   font-family: Helvetica, Arial, sans-serif;
 }
+

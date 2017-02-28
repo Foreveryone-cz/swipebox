@@ -44,10 +44,11 @@
 						<div id="swipebox-top-bar">\
 							<div id="swipebox-title"></div>\
 						</div>\
+						<div class="swipebox-closable" id="closable"></div>\
 						<div id="swipebox-bottom-bar">\
 							<div id="swipebox-arrows">\
-								<a id="swipebox-prev"></a>\
-								<a id="swipebox-next"></a>\
+								<a id="swipebox-prev" title="Zpět"></a>\
+								<a id="swipebox-next" title="Další"></a>\
 							</div>\
 						</div>\
 						<a id="swipebox-close"></a>\
@@ -172,7 +173,7 @@
 				if ( supportSVG && plugin.settings.useSVG === true ) {
 					bg = $( '#swipebox-close' ).css( 'background-image' );
 					bg = bg.replace( 'png', 'svg' );
-					$( '#swipebox-prev, #swipebox-next, #swipebox-close' ).css( {
+					$( '#swipebox-close' ).css( {
 						'background-image' : bg
 					} );
 				}
@@ -182,7 +183,7 @@
 				}
 
 				$.each( elements,  function() {
-					$( '#swipebox-slider' ).append( '<div class="slide"></div>' );
+					$( '#swipebox-slider' ).append( '<div class="slide"><div id="closable"></div></div>' );
 				} );
 
 				$this.setDim();
@@ -584,7 +585,7 @@
 					} );
 				}
 
-				$( '#swipebox-close' ).bind( action, function() {
+				$( '#swipebox-close ,#closable' ).bind( action, function() {
 					$this.closeSlide();
 				} );
 			},
@@ -789,7 +790,7 @@
 						'autoplay' : ( plugin.settings.autoplayVideos ? '1' : '0' ),
 						'v' : ''
 					});
-					iframe = '<iframe width="560" height="315" src="//' + youtubeUrl[1] + '/embed/' + youtubeUrl[2] + '?' + qs + '" frameborder="0" allowfullscreen></iframe>';
+					iframe = '<iframe width="560" height="315" src="https://' + youtubeUrl[1] + '/embed/' + youtubeUrl[2] + '?' + qs + '" frameborder="0" allowfullscreen></iframe>';
 
 				} else if ( vimeoUrl ) {
 					qs = ui.parseUri( url, {
@@ -804,7 +805,7 @@
 					iframe = '<iframe width="560" height="315" src="' + url + '" frameborder="0" allowfullscreen></iframe>';
 				}
 
-				return '<div class="swipebox-video-container" style="max-width:' + plugin.settings.videoMaxWidth + 'px"><div class="swipebox-video">' + iframe + '</div></div>';
+				return '<div class="swipebox-video-container" ><div class="swipebox-video">' + iframe + '</div></div>';
 			},
 
 			/**
